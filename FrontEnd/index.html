@@ -12,7 +12,7 @@
 </head>
 <body>
 <header>
-	<h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
+	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 	<nav>
 		<ul>
 			<li><a href="index.html">projets</a></li>
@@ -37,10 +37,10 @@
 	<section id="portfolio">
 		<h2>Mes Projets</h2>
 		<div id="filters">
-			<button	id="all" class="all">Tous</button>
-			<button id="1" class="object">Objet</button>
-			<button id="2" class="flat">Appartements</button>
-			<button id="3" class="HostelNRestaurants">Hôtels & Restaurants</button>
+			<button	id="all" class="all filterSelected">Tous</button>
+			<button id="1" class="object filterUnselected">Objet</button>
+			<button id="2" class="flat filterUnselected">Appartements</button>
+			<button id="3" class="HostelNRestaurants filterUnselected">Hôtels & Restaurants</button>
 		</div>
 		<div class="gallery">
 			<!-- ajout du content en js  -->
@@ -49,7 +49,7 @@
 	<section id="contact">
 		<h2>Contact</h2>
 		<p>Vous avez un projet ? Discutons-en !</p>
-		<form action="#" method="post">
+		<form action="#" method="post" name="login">
 			<label for="name">Nom</label>
 			<input type="text" name="name" id="name">
 			<label for="email">Email</label>

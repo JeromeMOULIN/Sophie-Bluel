@@ -1,5 +1,17 @@
 {
   "dependencies": {
-    "swagger": "^0.7.5"
-  }
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.3.1",
+    "ejs": "^3.1.9",
+    "jsonwebtoken": "^9.0.2"
+  },
+  "name": "portfolio-architecte-sophie-bluel-master",
+  "description": "Code du projet 6 d'intégrateur web.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
 }
