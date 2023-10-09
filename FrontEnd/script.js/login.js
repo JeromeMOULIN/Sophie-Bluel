@@ -13,17 +13,53 @@ document.querySelector("#subForm").addEventListener("submit", (e) =>{
     }
 
     if(error){
-        // Si error alors on enleve le p deja present et on le remplace par un
-        // message d'erreur
+        // Si error alors on affiche un message d'erreur
         document.querySelector("#error").innerHTML = error;
+        
     }else{
         // Recupere les informations du formulaire dans des variables.
         let email = document.getElementsByName("email");
         let pwd = document.getElementsByName("pwd");
-        email = email[0].value
-        pwd = pwd[0].value
-    }
-    
+        
+
+        let myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+        
+        let urlencoded = new URLSearchParams();
+        urlencoded.append("email", email[0].value);
+        urlencoded.append("password", pwd[0].value);
+
+        // on set les options de notre requet fetch
+        let requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: urlencoded,
+            redirect: 'follow'
+        };
+        
+        fetch("http://localhost:5678/api/users/login", requestOptions)
+            // Convertie la reponse en JSON
+            .then(response => response.json())
+            // Traitement de la repose
+            .then(result => {
+                // on recupere le token dans une variable
+                const token = result.token
+                // On enregistre l'es information de l'utilisateur dans le LocalStorage
+                const user = {
+                    email : email[0].value,
+                    password : pwd[0].value,
+                    token : token,
+                }
+                // Si l'utilisateur a bien un token
+                if (user.token != null){
+                    localStorage.setItem('user', JSON.stringify(user))
+                     //On redirige l'utilisateur vers la page principal
+                    document.location.href="./index.html"
+                }
+            })
+            .catch(error => console.log('error', error));
+
+    } 
 })
 
 

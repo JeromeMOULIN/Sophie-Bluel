@@ -223,10 +223,23 @@ footer nav ul {
 	justify-content: flex-end;
 	margin: 2em
 }
+/* Bandeau edition */
+#editbanner{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	left: 0;
+	top: 0;
+	gap: 10px;
+	height: 59px;
+	width: 100%;
+	font-size: large;
+	background-color: black;
+	color: white;
+}
 
 /* page login */
-
-
 #form {
 	width: 50%;
 	margin: auto;
