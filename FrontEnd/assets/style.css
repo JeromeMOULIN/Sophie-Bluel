@@ -94,6 +94,22 @@ nav li {
 	padding: 0 10px;
 	font-size: 1.2em;
 }
+#title{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 2em;
+	gap: 20px;
+}
+#title #modifButton{
+	align-items: center;
+	cursor: pointer;
+	font-size: large;
+	display: flex;
+	gap: 5px;
+	text-decoration: none;
+	color: black;
+}
 
 li:hover {
 	color: #B1663C;
@@ -120,10 +136,6 @@ li:hover {
 
 #introduction p {
 	margin-bottom: 0.5em;
-}
-#portfolio h2 {
-	text-align: center;
-	margin-bottom: 1em;
 }
 #filters {
 	display: flex;
@@ -238,6 +250,8 @@ footer nav ul {
 	background-color: black;
 	color: white;
 }
+/* modifier */
+
 
 /* page login */
 #form {

@@ -1,21 +1,33 @@
 // Modification si connecté
-bannerTemplate = `<div id="editbanner">
-                    <i class="fa-regular fa-pen-to-square fa-xs"></i>
-                    <p>Mode edition</p>
-                  </div>`;
-loginTemplate = `<li id="login"><a href="./logger.html">login</a></li>`
-logoutTemplate = `<li id="logout"><a href="#">logout</a></li>`
-
-if(localStorage.getItem("user") != null){
-    document.body.insertAdjacentHTML("afterbegin", bannerTemplate);
-    document.getElementById("contact").insertAdjacentHTML("afterend", logoutTemplate);
-    document.getElementById("logout").addEventListener("click", () => {
-        localStorage.removeItem("user")
-        document.location.href="./index.html"
-    })
-}else{
-    document.getElementById("contact").insertAdjacentHTML("afterend", loginTemplate);
-}
+    // Banner EditorOn
+        bannerTemplate = `<div id="editbanner">
+        <i class="fa-regular fa-pen-to-square fa-xs"></i>
+        <p>Mode edition</p>
+        </div>`;
+        if(localStorage.getItem("user") != null){
+            document.body.insertAdjacentHTML("afterbegin", bannerTemplate);
+            }
+    // Login/logout
+        loginTemplate = `<li id="login"><a href="./logger.html">login</a></li>`
+        logoutTemplate = `<li id="logout"><a href="#">logout</a></li>`
+        if(localStorage.getItem("user") != null){
+            document.getElementById("contact").insertAdjacentHTML("afterend", logoutTemplate);
+            document.getElementById("logout").addEventListener("click", () => {
+                localStorage.removeItem("user")
+                document.location.href="./index.html"
+            })
+        }else{
+            document.getElementById("contact").insertAdjacentHTML("afterend", loginTemplate);
+        }
+    // filtres et bouton modif
+        if(localStorage.getItem("user") != null){
+            document.getElementById("filters").remove();      
+            modifierButton = `<a id="modifButton" href="#">
+            <i class="fa-regular fa-pen-to-square fa-xs"></i>
+            <p>Modifier</p>
+            </a>`;
+            document.getElementById("title").insertAdjacentHTML("beforeend", modifierButton)
+        }
 
 //recuperer de l'api
 fetch('http://localhost:5678/api/works').then(response => {
