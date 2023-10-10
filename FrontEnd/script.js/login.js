@@ -53,7 +53,7 @@ document.querySelector("#subForm").addEventListener("submit", (e) =>{
                 // Si l'utilisateur a bien un token
                 if (user.token != null){
                     localStorage.setItem('user', JSON.stringify(user))
-                     //On redirige l'utilisateur vers la page principal
+                     // On redirige l'utilisateur vers la page principal
                     document.location.href="./index.html"
                 }
             })

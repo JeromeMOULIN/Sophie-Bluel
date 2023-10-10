@@ -88,11 +88,14 @@ nav ul {
 	display: flex;
 	align-items: center;
 	list-style-type: none;
-
 }
 nav li {
 	padding: 0 10px;
 	font-size: 1.2em;
+}
+nav a{
+	text-decoration: none;
+	color: black;
 }
 #title{
 	display: flex;
@@ -288,4 +291,35 @@ footer nav ul {
 #error{
 	padding: 10px;
 	color: red;
+}
+/* MODAL */
+
+.modal{
+	position: fixed;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,0.8)
+}
+.modal-wrapper{
+	position: relative;
+	overflow: auto;
+	width: 630px;
+	max-width: calc(100vw - 20px);
+	height: 688px;
+	max-height: calc(100vh - 20px);
+	border-radius: 10px;
+	padding: 20px;
+	background-color: #fff;
+}
+.modal-cross{
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	border:none;
+	background-color: white;
 }

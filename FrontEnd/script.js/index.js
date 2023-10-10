@@ -11,63 +11,55 @@
         loginTemplate = `<li id="login"><a href="./logger.html">login</a></li>`
         logoutTemplate = `<li id="logout"><a href="#">logout</a></li>`
         if(localStorage.getItem("user") != null){
-            document.getElementById("contact").insertAdjacentHTML("afterend", logoutTemplate);
+            document.getElementById("contactNav").insertAdjacentHTML("afterend", logoutTemplate);
             document.getElementById("logout").addEventListener("click", () => {
                 localStorage.removeItem("user")
                 document.location.href="./index.html"
             })
         }else{
-            document.getElementById("contact").insertAdjacentHTML("afterend", loginTemplate);
+            document.getElementById("contactNav").insertAdjacentHTML("afterend", loginTemplate);
         }
     // filtres et bouton modif
         if(localStorage.getItem("user") != null){
             document.getElementById("filters").remove();      
-            modifierButton = `<a id="modifButton" href="#">
+            modifierButton = `<a id="modifButton" class="call-modal" href="#modal1">
             <i class="fa-regular fa-pen-to-square fa-xs"></i>
             <p>Modifier</p>
             </a>`;
             document.getElementById("title").insertAdjacentHTML("beforeend", modifierButton)
         }
 
-//recuperer de l'api
-fetch('http://localhost:5678/api/works').then(response => {
-    return response.json();
-}).then(works => {
-    //création du template
-    let template = '';
-    for (const work of works) {
-        template = template + `<figure id="${work.categoryId}" class="show">
-         <img src="${work.imageUrl}" alt="${work.title}">
-         <figcaption>${work.title}</figcaption>
-         </figure>`;
-    }
-    //injection du template
-    document.querySelector('.gallery').insertAdjacentHTML("beforeend", template);
-}).catch(err => {
-    console.log(err);
+// MODALS
+let modal = null
+
+// Open modal
+const openModal = function (e) {
+    e.preventDefault()
+    target = document.querySelector(this.getAttribute('href'))
+    target.style.visibility = null
+    target.removeAttribute('aria-hidden')
+    target.setAttribute('aria-modal', 'true')
+    modal = target
+    modal.addEventListener('click', closeModal)
+    modal.querySelector('.modal-cross').addEventListener('click', closeModal)
+}
+
+// Close modal
+const closeModal = function (e){
+    if(modal === null) return
+    e.preventDefault()
+    modal.style.visibility = 'hidden'
+    modal.setAttribute('aria-hidden', 'true')
+    modal.removeAttribute('aria-modal')
+    modal.removeEventListener('click', closeModal)
+    modal.querySelector('.modal-cross').removeEventListener('click', closeModal)
+    modal = null
+
+}
+
+// Call modal
+document.querySelectorAll('.call-modal').forEach(a => {
+    a.addEventListener('click', openModal)
 })
 
-//recupération des filtres
-let filters = document.querySelectorAll("#filters button");
-//pour chaque filtre de mes filtres j'écoute le click
-
-for (let filter of filters) {
-    filter.addEventListener("click", () => {
-        // Pour chaqu'un de met filtre je remplace la class filtreSelected si presente par [...]Unselected
-        filters.forEach((filter) => filter.classList.replace("filterSelected","filterUnselected"))
-        // Je change la classe de l'actuel bouton cliquer par filterSelected
-        filter.classList.replace("filterUnselected","filterSelected")
-        //Récupération de toute mes cartes
-        let cards = document.querySelectorAll(".gallery figure")
-        //Pour chaque carte de mes cartes
-        for (let card of cards) {
-            // je cache tout les cartes
-            card.classList.replace("show", "hide")
-            if (card.id === filter.id || filter.id === "all") {
-                //j'affiche toute les cartes dont l'id catégorie est egale a l'id du filtre
-                card.classList.replace("hide", "show")
-            }
-        }
-    })
-}
 window.addEventListener('load', start);

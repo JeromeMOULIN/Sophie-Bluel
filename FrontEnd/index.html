@@ -17,7 +17,7 @@
 	<nav>
 		<ul>
 			<li><a href="index.html">projets</a></li>
-			<li id="contact"><a href="#contact">contact</a></li>
+			<li id="contactNav"><a href="#contact">contact</a></li>
 			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 		</ul>
 	</nav>
@@ -38,6 +38,14 @@
 		<div id="title">
 			<h2>Mes Projets</h2>
 		</div>
+		<aside id="modal1" class="modal" aria-hidden="true" role="dialog" aria-modal="false" aria-label="modalTitle" style="visibility: hidden;">
+			<div class="modal-wrapper">
+				<button class="modal-cross"><i class="fa-solid fa-xmark fa-lg"></i></button>
+				<h1 class="modalTitle">Gallerie</h1>
+				<p>Hello</p>
+				<button>Ajouter une photo</button>
+			</div>
+		</aside>
 		
 		<div id="filters">
 			<button	id="all" class="all filterSelected">Tous</button>
@@ -73,5 +81,6 @@
 </footer>
 
 <script src="./script.js/index.js"></script>
+<script src="./script.js/api.js"></script>
 </body>
 </html>
