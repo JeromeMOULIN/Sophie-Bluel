@@ -29,10 +29,10 @@
             document.getElementById("title").insertAdjacentHTML("beforeend", modifierButton)
         }
 
-// MODALS
+// MODALS pour identifier la modal en cour
 let modal = null
 
-// Open modal
+// Ouvre la modal
 const openModal = function (e) {
     e.preventDefault()
     target = document.querySelector(this.getAttribute('href'))
@@ -42,9 +42,10 @@ const openModal = function (e) {
     modal = target
     modal.addEventListener('click', closeModal)
     modal.querySelector('.modal-cross').addEventListener('click', closeModal)
+    modal.querySelector('.modal-stop').addEventListener('click', stopPropagation)
 }
 
-// Close modal
+// Ferme la modal
 const closeModal = function (e){
     if(modal === null) return
     e.preventDefault()
@@ -53,13 +54,39 @@ const closeModal = function (e){
     modal.removeAttribute('aria-modal')
     modal.removeEventListener('click', closeModal)
     modal.querySelector('.modal-cross').removeEventListener('click', closeModal)
+    modal.querySelector('.modal-stop').removeEventListener('click', stopPropagation)
     modal = null
-
 }
 
-// Call modal
+const stopPropagation = function (e){
+    e.stopPropagation()
+}
+
+// Ecoute les touche du clavier qui sont pressé
+window.addEventListener('keydown', function(e){
+    // Ferme la modal si les touche echape est pressé
+    if (e.key === "Escape" || e.key === "Esc"){
+        closeModal(e)
+    }
+})
+
+// Appel la modal
 document.querySelectorAll('.call-modal').forEach(a => {
     a.addEventListener('click', openModal)
 })
+
+document.getElementById('btnAddPicture').addEventListener('click', () => {
+    document.getElementById('modal1Part1').classList.add('hiddenModalPart')
+    document.getElementById('modal1Part2').classList.remove('hiddenModalPart')
+
+})
+document.getElementById('modalArrow').addEventListener('click', () => {
+    document.getElementById('modal1Part1').classList.remove('hiddenModalPart')
+    document.getElementById('modal1Part2').classList.add('hiddenModalPart')
+
+})
+
+
+
 
 window.addEventListener('load', start);

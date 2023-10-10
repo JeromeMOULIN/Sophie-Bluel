@@ -29,7 +29,7 @@ document.querySelector("#subForm").addEventListener("submit", (e) =>{
         urlencoded.append("email", email[0].value);
         urlencoded.append("password", pwd[0].value);
 
-        // on set les options de notre requet fetch
+        // on set les options de notre requete fetch
         let requestOptions = {
             method: 'POST',
             headers: myHeaders,

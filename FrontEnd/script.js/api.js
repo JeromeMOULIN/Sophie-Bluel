@@ -2,16 +2,24 @@
 fetch('http://localhost:5678/api/works').then(response => {
     return response.json();
 }).then(works => {
-    //création du template
-    let template = '';
+    //création du template pour mes projet
+    let templateProject = '';
     for (const work of works) {
-        template = template + `<figure id="${work.categoryId}" class="show">
-         <img src="${work.imageUrl}" alt="${work.title}">
-         <figcaption>${work.title}</figcaption>
-         </figure>`;
+        templateProject = templateProject + `<figure id="${work.categoryId}" class="show">
+                                              <img src="${work.imageUrl}" alt="${work.title}">
+                                              <figcaption>${work.title}</figcaption>
+                                             </figure>`;
     }
-    //injection du template
-    document.querySelector('.gallery').insertAdjacentHTML("beforeend", template);
+    let templateModal = '';
+    for (const work of works) {
+        templateModal = templateModal + `<figure id="${work.categoryId}" class="adminWorks">
+                                            <img src="${work.imageUrl}" alt="${work.title}">
+                                            <button class="trash"><i class="fa-solid fa-trash-can"></i></button>
+                                         </figure>`;
+    }
+    //injection du template dans mes projets
+    document.querySelector('.gallery').insertAdjacentHTML("beforeend", templateProject);
+    document.querySelector('.contentAdminGallery').insertAdjacentHTML("beforeend", templateModal)
 }).catch(err => {
     console.log(err);
 })

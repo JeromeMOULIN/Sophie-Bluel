@@ -192,7 +192,7 @@ li:hover {
 }
 #contact {
 	width: 50%;
-margin: auto;
+	margin: auto;
 }
 #contact > * {
 	text-align: center;
@@ -307,14 +307,22 @@ footer nav ul {
 }
 .modal-wrapper{
 	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 	overflow: auto;
 	width: 630px;
 	max-width: calc(100vw - 20px);
-	height: 688px;
 	max-height: calc(100vh - 20px);
 	border-radius: 10px;
 	padding: 20px;
 	background-color: #fff;
+}
+.modalPart{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 .modal-cross{
 	position: absolute;
@@ -322,4 +330,77 @@ footer nav ul {
 	right: 10px;
 	border:none;
 	background-color: white;
+	cursor: pointer;
+	transition: 0.3s all ease-in-out;
+}
+.modal-cross:hover{
+	transform: rotate(45deg) scale(60%);
+}
+.modal-arrow{
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	border: none;
+	background-color: white;
+	cursor: pointer;
+
+}
+/* modal content gallerie */
+.modalTitle{
+	margin: 30px ;
+}
+.contentAdminGallery{
+	display: flex;
+	flex-wrap: wrap;
+	padding: 20px;
+	border-bottom: 1px solid #B3B3B3;
+	margin: 0 50px;
+	gap: 10px;
+}
+.adminWorks{
+	position: relative;
+	width: 18%;
+}
+.adminWorks img{
+	object-fit: cover;
+	width: 100%;
+}
+.trash{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	color: white;
+	height: 25px;
+	background-color: black;
+	border: none;
+	border-radius: 5px;
+
+}
+#modal1 .btn{
+	cursor: pointer;
+	font-family: 'Syne';
+	font-weight: 700;
+	color: white;
+	background-color: #1D6154;
+	margin : 2em auto ;
+	padding: 10px;
+	width: 180px;
+	text-align: center;
+	border-radius: 60px ;
+	border: none;
+}
+
+.hiddenModalPart{
+	visibility: hidden;
+	position: absolute;
+}
+.formAddWorks{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }

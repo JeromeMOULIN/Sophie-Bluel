@@ -39,12 +39,38 @@
 			<h2>Mes Projets</h2>
 		</div>
 		<aside id="modal1" class="modal" aria-hidden="true" role="dialog" aria-modal="false" aria-label="modalTitle" style="visibility: hidden;">
-			<div class="modal-wrapper">
-				<button class="modal-cross"><i class="fa-solid fa-xmark fa-lg"></i></button>
-				<h1 class="modalTitle">Gallerie</h1>
-				<p>Hello</p>
-				<button>Ajouter une photo</button>
+			<div  class="modal-wrapper modal-stop ">
+				<button class="modal-cross"><i class="fa-solid fa-xmark fa-xl"></i></button>
+				<div id="modal1Part1" class="modalPart">
+					<h1 class="modalTitle">Gallerie photo</h1>
+					<div id="adminGallery" class="contentAdminGallery">
+						<!-- content ajouter en js -->
+					</div>
+					<button id="btnAddPicture" class="btn">Ajouter une photo</button>
+				</div>
+				<div id="modal1Part2" class="modalPart hiddenModalPart">
+					<button id="modalArrow" class="modal-arrow"><i class="fa-solid fa-arrow-left fa-xl"></i></button>
+					<h1 class="modalTitle">Ajout photo</h1>
+					<form class="formAddWorks" action="">
+						<label for="">
+							<input type="file">
+						</label>
+						<label for="" >Titre
+							<input type="text">
+						</label>
+						<label for="" >Catégorie
+							<select name="categorie" id="">
+								<option value="1">Objet</option>
+								<option value="2">Appartements</option>
+								<option value="3">Hôtels & Restaurants</option>
+							</select>
+						</label>
+						<input type="submit" name="" id="">
+
+					</form>
+				</div>
 			</div>
+
 		</aside>
 		
 		<div id="filters">
