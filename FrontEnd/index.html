@@ -42,30 +42,34 @@
 			<div  class="modal-wrapper modal-stop ">
 				<button class="modal-cross"><i class="fa-solid fa-xmark fa-xl"></i></button>
 				<div id="modal1Part1" class="modalPart">
-					<h1 class="modalTitle">Gallerie photo</h1>
+					<h2 class="modalTitle">Gallerie photo</h2>
 					<div id="adminGallery" class="contentAdminGallery">
 						<!-- content ajouter en js -->
 					</div>
 					<button id="btnAddPicture" class="btn">Ajouter une photo</button>
 				</div>
+
 				<div id="modal1Part2" class="modalPart hiddenModalPart">
 					<button id="modalArrow" class="modal-arrow"><i class="fa-solid fa-arrow-left fa-xl"></i></button>
-					<h1 class="modalTitle">Ajout photo</h1>
-					<form class="formAddWorks" action="">
-						<label for="">
-							<input type="file">
-						</label>
-						<label for="" >Titre
-							<input type="text">
-						</label>
-						<label for="" >Catégorie
-							<select name="categorie" id="">
-								<option value="1">Objet</option>
-								<option value="2">Appartements</option>
-								<option value="3">Hôtels & Restaurants</option>
-							</select>
-						</label>
-						<input type="submit" name="" id="">
+					<h2 class="modalTitle">Ajout photo</h2>
+
+					<img src="https://www.charlotteathleticclub.com/assets/camaleon_cms/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef.png" id="imageUploaded" alt="">
+					<form class="formAddWorks" method="post" enctype="multipart/form-data">
+						<label class="modalImgLoader" for="picture"></label>
+						<input id="pictureLoaded"type="file" name="picture" onchange="previewPicture(this)" required>
+
+						<label for="" >Titre</label>
+						<input id="workTitle" type="text">
+
+						<label for="categorie" >Catégorie</label>
+						<select name="categorie" id="categoryOptions">
+							<option value="null"></option>
+							<option value="1">Objet</option>
+							<option value="2">Appartements</option>
+							<option value="3">Hôtels & Restaurants</option>
+						</select>
+
+						<input type="submit" id="btnAddContent">
 
 					</form>
 				</div>

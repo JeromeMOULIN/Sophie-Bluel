@@ -1,3 +1,4 @@
+
 //recuperer de l'api
 fetch('http://localhost:5678/api/works').then(response => {
     return response.json();
@@ -47,4 +48,50 @@ for (let filter of filters) {
         }
     })
 }
+const bntSubmit = document.getElementById('btnAddContent')
+bntSubmit.addEventListener('click', (e) =>{
+    e.preventDefault()
+    let image = document.getElementById('pictureLoaded').value
+
+    let title = document.getElementById('workTitle').value
+
+    let category = document.getElementById('categoryOptions').value
+
+    const user = localStorage.getItem('user', JSON.stringify(user))
+    token = user.token
+    console.log(user)
+    console.log(token)
+    
+
+    if(image === '' || title === '' || category === 'null'){
+        console.log('error')
+    }else{
+        let myHeaders = new Headers();
+        myHeaders.append("Authorizaton", "Bearer"  )
+        myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+        
+        let urlencoded = new URLSearchParams();
+        urlencoded.append(image);
+        urlencoded.append(title);
+        urlencoded.append(category);
+
+        // on set les options de notre requete fetch
+        let requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: urlencoded,
+            redirect: 'follow'
+        };
+
+    fetch("http://localhost:5678/api/works", requestOptions)
+            // Convertie la reponse en JSON
+            .then(response => response.json())
+            // Traitement de la reponse
+            .then(result => console.log(result))
+            .catch(error => console.log('error', error));
+    }
+
+    
+})
+
 window.addEventListener('load', start);

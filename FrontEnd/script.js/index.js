@@ -62,7 +62,7 @@ const stopPropagation = function (e){
     e.stopPropagation()
 }
 
-// Ecoute les touche du clavier qui sont pressé
+// Ecoute les touches du clavier qui sont pressé
 window.addEventListener('keydown', function(e){
     // Ferme la modal si les touche echape est pressé
     if (e.key === "Escape" || e.key === "Esc"){
@@ -78,15 +78,22 @@ document.querySelectorAll('.call-modal').forEach(a => {
 document.getElementById('btnAddPicture').addEventListener('click', () => {
     document.getElementById('modal1Part1').classList.add('hiddenModalPart')
     document.getElementById('modal1Part2').classList.remove('hiddenModalPart')
-
 })
 document.getElementById('modalArrow').addEventListener('click', () => {
     document.getElementById('modal1Part1').classList.remove('hiddenModalPart')
     document.getElementById('modal1Part2').classList.add('hiddenModalPart')
-
 })
 
+//preview image
+let image = document.getElementById("imageUploaded")
 
+let previewPicture = function (e){
+    const [picture] = e.files
+
+    if(picture){
+        image.src = URL.createObjectURL(picture)
+    }
+}
 
 
 window.addEventListener('load', start);

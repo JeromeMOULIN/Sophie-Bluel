@@ -40,7 +40,7 @@ document.querySelector("#subForm").addEventListener("submit", (e) =>{
         fetch("http://localhost:5678/api/users/login", requestOptions)
             // Convertie la reponse en JSON
             .then(response => response.json())
-            // Traitement de la repose
+            // Traitement de la reponse
             .then(result => {
                 // on recupere le token dans une variable
                 const token = result.token
