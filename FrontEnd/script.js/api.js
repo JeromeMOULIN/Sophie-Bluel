@@ -1,29 +1,25 @@
-
 //recuperer de l'api
-fetch('http://localhost:5678/api/works').then(response => {
-    return response.json();
-}).then(works => {
-    //création du template pour mes projet
-    let templateProject = '';
-    for (const work of works) {
-        templateProject = templateProject + `<figure id="${work.categoryId}" class="show">
+const getAllWorks =  async () => {
+    const response = await fetch('http://localhost:5678/api/works')
+    const works = await response.json();
+    
+        //création du template pour mes projet
+        let templateProject = '';
+        for (const work of works) {
+            templateProject = templateProject + `<figure id="${work.categoryId}" class="show">
                                               <img src="${work.imageUrl}" alt="${work.title}">
                                               <figcaption>${work.title}</figcaption>
                                              </figure>`;
-    }
-    let templateModal = '';
-    for (const work of works) {
-        templateModal = templateModal + `<figure id="${work.categoryId}" class="adminWorks">
+        }
+        let templateModal = '';
+        for (const work of works) {
+            templateModal = templateModal + `<figure id="${work.categoryId}" class="adminWorks">
                                             <img src="${work.imageUrl}" alt="${work.title}">
                                             <button class="trash"><i class="fa-solid fa-trash-can"></i></button>
                                          </figure>`;
-    }
-    //injection du template dans mes projets
-    document.querySelector('.gallery').insertAdjacentHTML("beforeend", templateProject);
-    document.querySelector('.contentAdminGallery').insertAdjacentHTML("beforeend", templateModal)
-}).catch(err => {
-    console.log(err);
-})
+        }
+        return {templateProject, templateModal}
+}
 
 //recupération des filtres
 let filters = document.querySelectorAll("#filters button");
@@ -32,9 +28,9 @@ let filters = document.querySelectorAll("#filters button");
 for (let filter of filters) {
     filter.addEventListener("click", () => {
         // Pour chaqu'un de met filtre je remplace la class filtreSelected si presente par [...]Unselected
-        filters.forEach((filter) => filter.classList.replace("filterSelected","filterUnselected"))
+        filters.forEach((filter) => filter.classList.replace("filterSelected", "filterUnselected"))
         // Je change la classe de l'actuel bouton cliquer par filterSelected
-        filter.classList.replace("filterUnselected","filterSelected")
+        filter.classList.replace("filterUnselected", "filterSelected")
         //Récupération de toute mes cartes
         let cards = document.querySelectorAll(".gallery figure")
         //Pour chaque carte de mes cartes
@@ -49,49 +45,43 @@ for (let filter of filters) {
     })
 }
 const bntSubmit = document.getElementById('btnAddContent')
-bntSubmit.addEventListener('click', (e) =>{
+bntSubmit.addEventListener('click', (e) => {
     e.preventDefault()
-    let image = document.getElementById('pictureLoaded').value
+    let image = document.getElementById('pictureLoaded').files[0]
 
     let title = document.getElementById('workTitle').value
 
     let category = document.getElementById('categoryOptions').value
 
-    const user = localStorage.getItem('user', JSON.stringify(user))
-    token = user.token
-    console.log(user)
-    console.log(token)
-    
+    const user = JSON.parse(localStorage.getItem('user')) 
 
-    if(image === '' || title === '' || category === 'null'){
+    let token = user.token
+
+
+    if (image === '' || title === '' || category === 'null') {
         console.log('error')
-    }else{
+    } else {
         let myHeaders = new Headers();
-        myHeaders.append("Authorizaton", "Bearer"  )
-        myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
-        
-        let urlencoded = new URLSearchParams();
-        urlencoded.append(image);
-        urlencoded.append(title);
-        urlencoded.append(category);
+        myHeaders.append('Authorizaton', 'Bearer ' + token );
+        myHeaders.append('Content-Type', 'multipart/form-data');
+
+        let formData = new FormData();
+        formData.append("image", image);
+        formData.append("title", title);
+        formData.append("category", category);
 
         // on set les options de notre requete fetch
         let requestOptions = {
             method: 'POST',
             headers: myHeaders,
-            body: urlencoded,
-            redirect: 'follow'
+            body: formData,
         };
-
-    fetch("http://localhost:5678/api/works", requestOptions)
+        console.log(myHeaders)
+        fetch("http://localhost:5678/api/works", requestOptions)
             // Convertie la reponse en JSON
             .then(response => response.json())
             // Traitement de la reponse
             .then(result => console.log(result))
             .catch(error => console.log('error', error));
     }
-
-    
 })
-
-window.addEventListener('load', start);

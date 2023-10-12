@@ -1,3 +1,10 @@
+
+getAllWorks().then(template => {
+    
+    document.querySelector('.gallery').insertAdjacentHTML("beforeend", template.templateProject);
+    document.querySelector('.contentAdminGallery').insertAdjacentHTML("beforeend", template.templateModal)
+})
+//injection du template dans mes projets
 // Modification si connecté
     // Banner EditorOn
         bannerTemplate = `<div id="editbanner">
@@ -94,6 +101,3 @@ let previewPicture = function (e){
         image.src = URL.createObjectURL(picture)
     }
 }
-
-
-window.addEventListener('load', start);

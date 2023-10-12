@@ -21,10 +21,11 @@ document.querySelector("#subForm").addEventListener("submit", (e) =>{
         let email = document.getElementsByName("email");
         let pwd = document.getElementsByName("pwd");
         
-
+        // Set les parametres header
         let myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
         
+        // Set les parametres body
         let urlencoded = new URLSearchParams();
         urlencoded.append("email", email[0].value);
         urlencoded.append("password", pwd[0].value);
