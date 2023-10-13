@@ -101,3 +101,20 @@ let previewPicture = function (e){
         image.src = URL.createObjectURL(picture)
     }
 }
+
+//changement de couleur/curseur du bouton d'envoi de projet
+let formAdd = document.querySelector('.formAddWorks')
+formAdd.addEventListener('change', () => {
+    let image = document.getElementById('pictureLoaded').files[0]
+    console.log(image)
+    let title = document.getElementById('workTitle').value
+    
+    let category = document.getElementById('categoryOptions').value
+    
+    let btnformAdd = document.querySelector('#btnAddContent')
+    if (image === undefined || title === '' || category === 'null') {
+        btnformAdd.classList.replace('accessible','inaccessible')
+    } else {
+        btnformAdd.classList.replace('inaccessible','accessible')
+    }
+})
