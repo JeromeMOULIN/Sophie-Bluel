@@ -48,11 +48,11 @@ const bntSubmit = document.getElementById('btnAddContent')
 bntSubmit.addEventListener('click', (e) => {
     e.preventDefault()
     let image = document.getElementById('pictureLoaded').files[0]
-
+    
     let title = document.getElementById('workTitle').value
-
+    
     let category = document.getElementById('categoryOptions').value
-
+    
     const user = JSON.parse(localStorage.getItem('user')) 
 
     let token = user.token
@@ -62,8 +62,7 @@ bntSubmit.addEventListener('click', (e) => {
         console.log('error')
     } else {
         let myHeaders = new Headers();
-        myHeaders.append('Authorizaton', 'Bearer ' + token );
-        myHeaders.append('Content-Type', 'multipart/form-data');
+        myHeaders.append('Authorization', 'Bearer ' + token );
 
         let formData = new FormData();
         formData.append("image", image);
@@ -75,11 +74,10 @@ bntSubmit.addEventListener('click', (e) => {
             method: 'POST',
             headers: myHeaders,
             body: formData,
-        };
-        console.log(myHeaders)
+        }
         fetch("http://localhost:5678/api/works", requestOptions)
             // Convertie la reponse en JSON
-            .then(response => response.json())
+            .then(response => response.text())
             // Traitement de la reponse
             .then(result => console.log(result))
             .catch(error => console.log('error', error));

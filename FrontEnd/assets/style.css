@@ -162,7 +162,9 @@ li:hover {
 	background-color: white;
 	color: #1D6154;
 }
-
+#portfolio{
+	margin: 0 20px;
+}
 .gallery {
 	width: 100%;
 	display: grid;
@@ -173,6 +175,9 @@ li:hover {
 
 .gallery img {
 	width: 100%;
+	height: inherit;
+	max-height: 407px;
+	object-fit: cover;
 }
 .gallery figure{
 	width: 100%;
@@ -243,19 +248,12 @@ footer nav ul {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	position: absolute;
-	left: 0;
-	top: 0;
 	gap: 10px;
 	height: 59px;
-	width: 100%;
 	font-size: large;
 	background-color: black;
 	color: white;
 }
-/* modifier */
-
-
 /* page login */
 #form {
 	width: 50%;

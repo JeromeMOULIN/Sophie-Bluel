@@ -12,7 +12,7 @@ getAllWorks().then(template => {
         <p>Mode edition</p>
         </div>`;
         if(localStorage.getItem("user") != null){
-            document.body.insertAdjacentHTML("afterbegin", bannerTemplate);
+            document.body.insertAdjacentHTML("beforebegin", bannerTemplate);
             }
     // Login/logout
         loginTemplate = `<li id="login"><a href="./logger.html">login</a></li>`
