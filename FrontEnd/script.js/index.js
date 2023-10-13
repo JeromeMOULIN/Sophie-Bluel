@@ -1,10 +1,34 @@
 
-getAllWorks().then(template => {
-    
+getAllWorks().then(template => {  
+    //injection du template dans mes projets 
     document.querySelector('.gallery').insertAdjacentHTML("beforeend", template.templateProject);
     document.querySelector('.contentAdminGallery').insertAdjacentHTML("beforeend", template.templateModal)
+    let delBtn = document.querySelectorAll('.trash')
+    delBtn.forEach(trash => {
+        trash.addEventListener('click', function(){
+            workDom = this.parentElement
+            workId = workDom.id
+
+            const user = JSON.parse(localStorage.getItem('user')) 
+            let token = user.token
+            
+            var myHeaders = new Headers();
+            myHeaders.append("Authorization", "Bearer "+token);
+
+            var requestOptions = {
+                method: 'DELETE',
+                headers: myHeaders,
+            };
+
+            fetch(`http://localhost:5678/api/works/${workId}`, requestOptions)
+            .then(response => response.text())
+            .then(result => console.log(result))
+            .catch(error => console.log('error', error));
+
+            })
+            }) 
 })
-//injection du template dans mes projets
+
 // Modification si connecté
     // Banner EditorOn
         bannerTemplate = `<div id="editbanner">
@@ -118,3 +142,4 @@ formAdd.addEventListener('change', () => {
         btnformAdd.classList.replace('inaccessible','accessible')
     }
 })
+

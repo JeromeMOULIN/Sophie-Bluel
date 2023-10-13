@@ -13,13 +13,14 @@ const getAllWorks =  async () => {
         }
         let templateModal = '';
         for (const work of works) {
-            templateModal = templateModal + `<figure id="${work.categoryId}" class="adminWorks">
+            templateModal = templateModal + `<figure id="${work.id}" class="adminWorks">
                                             <img src="${work.imageUrl}" alt="${work.title}">
                                             <button class="trash"><i class="fa-solid fa-trash-can"></i></button>
                                          </figure>`;
         }
         return {templateProject, templateModal}
 }
+
 
 //recupération des filtres
 let filters = document.querySelectorAll("#filters button");
@@ -83,3 +84,4 @@ bntSubmit.addEventListener('click', (e) => {
             .catch(error => console.log('error', error));
     }
 })
+

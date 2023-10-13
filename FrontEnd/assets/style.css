@@ -173,7 +173,7 @@ li:hover {
 	grid-row-gap: 20px;
 }
 
-.gallery img {
+.gallery img{
 	width: 100%;
 	height: inherit;
 	max-height: 407px;
@@ -354,12 +354,14 @@ footer nav ul {
 	gap: 10px;
 }
 .adminWorks{
+	width: 17%;
 	position: relative;
-	width: 18%;
 }
 .adminWorks img{
-	object-fit: cover;
 	width: 100%;
+	min-height: 100%;
+	height: 100%;
+	object-fit: cover;
 }
 .trash{
 	display: flex;
@@ -400,6 +402,14 @@ footer nav ul {
 	justify-content: center;
 	align-items: center;
 	width: 80%;
+}
+#btnAddContent::before{
+	content: "Hi";
+	height: 100px;
+	width: 100px;
+	background-color: red;
+	padding: 20px;
+	border-bottom: 1px solid #B3B3B3;
 }
 .formAddWorks input[type="text"], .formAddWorks select{
 	border: none;
