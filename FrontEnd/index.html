@@ -53,13 +53,16 @@
 					<button id="modalArrow" class="modal-arrow"><i class="fa-solid fa-arrow-left fa-xl"></i></button>
 					<h2 class="modalTitle">Ajout photo</h2>
 
-					<img src="https://www.charlotteathleticclub.com/assets/camaleon_cms/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef.png" id="imageUploaded" alt="">
 					<form class="formAddWorks" method="post" enctype="multipart/form-data">
-						<label class="modalImgLoader" for="picture"></label>
-						<input id="pictureLoaded"type="file" name="picture" onchange="previewPicture(this)" required>
+						
+						<div class="addImgLoader">
+							<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Picture_icon_BLACK.svg/1200px-Picture_icon_BLACK.svg.png" id="imageUploaded" alt="">
+							<label class="modalImgLoader" for="picture"></label>
+							<input id="pictureLoaded" type="file" accept="image/*" name="picture" onchange="previewPicture(this)" required>
+						</div>
 
-						<label for="" >Titre</label>
-						<input id="workTitle" type="text">
+						<label for="imgTitle" >Titre</label>
+						<input id="workTitle" type="text" name="imgTitle">
 
 						<label for="categorie" >Catégorie</label>
 						<select name="categorie" id="categoryOptions">

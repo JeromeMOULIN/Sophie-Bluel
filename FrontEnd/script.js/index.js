@@ -3,11 +3,12 @@ getAllWorks().then(template => {
     //injection du template dans mes projets 
     document.querySelector('.gallery').insertAdjacentHTML("beforeend", template.templateProject);
     document.querySelector('.contentAdminGallery').insertAdjacentHTML("beforeend", template.templateModal)
+    // Ajout du system de suppression
     let delBtn = document.querySelectorAll('.trash')
     delBtn.forEach(trash => {
         trash.addEventListener('click', function(){
-            workDom = this.parentElement
-            workId = workDom.id
+            let workDom = this.parentElement
+            let workId = workDom.id
 
             const user = JSON.parse(localStorage.getItem('user')) 
             let token = user.token
@@ -19,11 +20,11 @@ getAllWorks().then(template => {
                 method: 'DELETE',
                 headers: myHeaders,
             };
-
-            fetch(`http://localhost:5678/api/works/${workId}`, requestOptions)
-            .then(response => response.text())
-            .then(result => console.log(result))
-            .catch(error => console.log('error', error));
+            
+             fetch(`http://localhost:5678/api/works/${workId}`, requestOptions)
+             .then(response => response.text())
+             .then(result => workDom.remove())
+             .catch(error => console.log('error', error));
 
             })
             }) 
@@ -117,7 +118,6 @@ document.getElementById('modalArrow').addEventListener('click', () => {
 
 //preview image
 let image = document.getElementById("imageUploaded")
-
 let previewPicture = function (e){
     const [picture] = e.files
 
@@ -130,7 +130,7 @@ let previewPicture = function (e){
 let formAdd = document.querySelector('.formAddWorks')
 formAdd.addEventListener('change', () => {
     let image = document.getElementById('pictureLoaded').files[0]
-    console.log(image)
+
     let title = document.getElementById('workTitle').value
     
     let category = document.getElementById('categoryOptions').value
@@ -140,6 +140,9 @@ formAdd.addEventListener('change', () => {
         btnformAdd.classList.replace('accessible','inaccessible')
     } else {
         btnformAdd.classList.replace('inaccessible','accessible')
+    }
+    if( image !== undefined){
+        document.getElementById('pictureLoaded').classList.add('hiddenModalPart');
     }
 })
 

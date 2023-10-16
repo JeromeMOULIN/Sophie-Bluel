@@ -49,14 +49,28 @@ const bntSubmit = document.getElementById('btnAddContent')
 bntSubmit.addEventListener('click', (e) => {
     e.preventDefault()
     let image = document.getElementById('pictureLoaded').files[0]
+    let url = URL.createObjectURL(image)
     
     let title = document.getElementById('workTitle').value
     
     let category = document.getElementById('categoryOptions').value
     
+    let workId = document.querySelector("#adminGallery").lastChild.id
+    workId++
+
     const user = JSON.parse(localStorage.getItem('user')) 
 
     let token = user.token
+
+    let templateAddModal = `<figure id="${workId}" class="adminWorks">
+                        <img src="${url}" alt="${title}">
+                        <button class="trash"><i class="fa-solid fa-trash-can"></i></button>
+                    </figure>`;
+
+    let templateAddHome = `<figure id="${category}" class="show ">
+                            <img src="${url}" alt="${title}">
+                            <figcaption>${title}</figcaption>
+                            </figure>`;
 
 
     if (image === '' || title === '' || category === 'null') {
@@ -76,12 +90,15 @@ bntSubmit.addEventListener('click', (e) => {
             headers: myHeaders,
             body: formData,
         }
-        fetch("http://localhost:5678/api/works", requestOptions)
-            // Convertie la reponse en JSON
-            .then(response => response.text())
-            // Traitement de la reponse
-            .then(result => console.log(result))
-            .catch(error => console.log('error', error));
+        
+        
+          fetch("http://localhost:5678/api/works", requestOptions)
+              // Convertie la reponse en JSON
+              .then(response => response.text())
+              // Traitement de la reponse
+              .then(document.querySelector("#adminGallery").insertAdjacentHTML("beforeend", templateAddModal),
+                     document.querySelector(".gallery").insertAdjacentHTML("beforeend", templateAddHome))
+              .catch(error => console.log('error', error));
     }
 })
 

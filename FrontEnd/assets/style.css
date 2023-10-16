@@ -396,6 +396,7 @@ footer nav ul {
 	visibility: hidden;
 	position: absolute;
 }
+
 .formAddWorks{
 	display: flex;
 	flex-direction: column;
@@ -404,7 +405,6 @@ footer nav ul {
 	width: 80%;
 }
 #btnAddContent::before{
-	content: "Hi";
 	height: 100px;
 	width: 100px;
 	background-color: red;
@@ -427,12 +427,48 @@ footer nav ul {
 	background-color: #A7A7A7!important;
 	cursor: not-allowed;
 }
+
 .accessible{
 	background-color: #1D6154;
 	cursor: pointer;
 }
-/* temporaire  */
+.addImgLoader{
+	position: relative;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	height: 100%;
+	width: 100%;
+	background-color: #E8F1F6;
+}
+.addImgLoader img{
+	color: #CBD6DC;
+}
+#pictureLoaded::file-selector-button{
+	position: absolute;
+	margin-left: auto;
+	margin-right: auto;
+	top: 50%; left: 50%;
+	transform: translate(-50%, -50%);
+	color: black;
+	height: 36px;
+	width: 173px;
+	background-color: #CBD6DC;
+	border: none;
+	border-radius: 50px;
+	color: #CBD6DC;
+}
+
+#pictureLoaded[type="file"]::after{
+	position: absolute;
+	pointer-events: none;
+	top: 50%; left: 50%;
+	transform: translate(-50%, -50%);
+	color: #0964b0;
+	content: "+ Ajout photo";
+}
+
 #imageUploaded{
-	max-height: 200px;
+	max-width: 25%;
 	object-fit: cover;
 }
