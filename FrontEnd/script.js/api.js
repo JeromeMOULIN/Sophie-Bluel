@@ -50,6 +50,8 @@ bntSubmit.addEventListener('click', (e) => {
     e.preventDefault()
     let image = document.getElementById('pictureLoaded').files[0]
     let url = URL.createObjectURL(image)
+
+    let picture = document.getElementById("imageUploaded")
     
     let title = document.getElementById('workTitle').value
     
@@ -97,7 +99,11 @@ bntSubmit.addEventListener('click', (e) => {
               .then(response => response.text())
               // Traitement de la reponse
               .then(document.querySelector("#adminGallery").insertAdjacentHTML("beforeend", templateAddModal),
-                     document.querySelector(".gallery").insertAdjacentHTML("beforeend", templateAddHome))
+                     document.querySelector(".gallery").insertAdjacentHTML("beforeend", templateAddHome),
+                     //reset du formulaire
+                     document.querySelector(".formAddWorks").reset(),
+                     document.getElementById('pictureLoaded').classList.remove('hiddenModalPart'),
+                     picture.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Picture_icon_BLACK.svg/1200px-Picture_icon_BLACK.svg.png")
               .catch(error => console.log('error', error));
     }
 })

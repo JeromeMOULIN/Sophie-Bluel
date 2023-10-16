@@ -141,6 +141,7 @@ formAdd.addEventListener('change', () => {
     } else {
         btnformAdd.classList.replace('inaccessible','accessible')
     }
+    //cache le bouton lorsqu'une image est selectionné.
     if( image !== undefined){
         document.getElementById('pictureLoaded').classList.add('hiddenModalPart');
     }

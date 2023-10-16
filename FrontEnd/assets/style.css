@@ -457,6 +457,7 @@ footer nav ul {
 	border: none;
 	border-radius: 50px;
 	color: #CBD6DC;
+	cursor: pointer;
 }
 
 #pictureLoaded[type="file"]::after{
@@ -466,6 +467,7 @@ footer nav ul {
 	transform: translate(-50%, -50%);
 	color: #0964b0;
 	content: "+ Ajout photo";
+	cursor: pointer;
 }
 
 #imageUploaded{
