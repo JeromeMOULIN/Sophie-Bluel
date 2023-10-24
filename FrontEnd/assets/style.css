@@ -444,6 +444,10 @@ footer nav ul {
 .addImgLoader img{
 	color: #CBD6DC;
 }
+#pictureLoaded{
+	color: #E8F1F6;
+	height: 0;
+}
 #pictureLoaded::file-selector-button{
 	position: absolute;
 	margin-left: auto;

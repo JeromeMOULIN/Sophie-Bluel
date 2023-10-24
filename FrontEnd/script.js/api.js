@@ -6,7 +6,7 @@ const getAllWorks =  async () => {
         //création du template pour mes projet
         let templateProject = '';
         for (const work of works) {
-            templateProject = templateProject + `<figure id="${work.categoryId}" class="show">
+            templateProject = templateProject + `<figure id="${work.categoryId}" data-pictureId="${work.id}" class="show">
                                               <img src="${work.imageUrl}" alt="${work.title}">
                                               <figcaption>${work.title}</figcaption>
                                              </figure>`;
@@ -57,22 +57,10 @@ bntSubmit.addEventListener('click', (e) => {
     
     let category = document.getElementById('categoryOptions').value
     
-    let workId = document.querySelector("#adminGallery").lastChild.id
-    workId++
 
     const user = JSON.parse(localStorage.getItem('user')) 
 
     let token = user.token
-
-    let templateAddModal = `<figure id="${workId}" class="adminWorks">
-                        <img src="${url}" alt="${title}">
-                        <button class="trash"><i class="fa-solid fa-trash-can"></i></button>
-                    </figure>`;
-
-    let templateAddHome = `<figure id="${category}" class="show ">
-                            <img src="${url}" alt="${title}">
-                            <figcaption>${title}</figcaption>
-                            </figure>`;
 
 
     if (image === '' || title === '' || category === 'null') {
@@ -96,14 +84,29 @@ bntSubmit.addEventListener('click', (e) => {
         
           fetch("http://localhost:5678/api/works", requestOptions)
               // Convertie la reponse en JSON
-              .then(response => response.text())
+              .then(response => response.json())
               // Traitement de la reponse
-              .then(document.querySelector("#adminGallery").insertAdjacentHTML("beforeend", templateAddModal),
-                     document.querySelector(".gallery").insertAdjacentHTML("beforeend", templateAddHome),
-                     //reset du formulaire
-                     document.querySelector(".formAddWorks").reset(),
-                     document.getElementById('pictureLoaded').classList.remove('hiddenModalPart'),
-                     picture.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Picture_icon_BLACK.svg/1200px-Picture_icon_BLACK.svg.png")
+              .then(data => {
+                  //reset du formulaire
+                  console.log(data)
+                  console.log(data.id)
+                  let templateAddModal = `<figure id="${data.id}"  class="adminWorks">
+                  <img src="${url}" alt="${title}">
+                  <button class="trash"><i class="fa-solid fa-trash-can"></i></button>
+                  </figure>`;
+                  
+                  let templateAddHome = `<figure id="${category}" data-pictureId="${data.id}" class="show ">
+                  <img src="${url}" alt="${title}">
+                  <figcaption>${title}</figcaption>
+                  </figure>`;
+                  
+                  document.querySelector("#adminGallery").insertAdjacentHTML("beforeend", templateAddModal)
+                  document.querySelector(".gallery").insertAdjacentHTML("beforeend", templateAddHome)
+                  document.querySelector("#adminGallery").lastElementChild.lastElementChild.addEventListener('click', workDelete)
+                  document.querySelector(".formAddWorks").reset()
+                  document.getElementById('pictureLoaded').classList.remove('hiddenModalPart')
+                  picture.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Picture_icon_BLACK.svg/1200px-Picture_icon_BLACK.svg.png"
+                })
               .catch(error => console.log('error', error));
     }
 })

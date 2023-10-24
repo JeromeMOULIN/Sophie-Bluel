@@ -6,9 +6,14 @@ getAllWorks().then(template => {
     // Ajout du system de suppression
     let delBtn = document.querySelectorAll('.trash')
     delBtn.forEach(trash => {
-        trash.addEventListener('click', function(){
-            let workDom = this.parentElement
+        trash.addEventListener('click', workDelete)
+        }) 
+})
+const workDelete = function(){
+    let workDom = this.parentElement
             let workId = workDom.id
+
+            let WorkIndexDom = document.querySelectorAll('.gallery');
 
             const user = JSON.parse(localStorage.getItem('user')) 
             let token = user.token
@@ -22,14 +27,13 @@ getAllWorks().then(template => {
             };
             
              fetch(`http://localhost:5678/api/works/${workId}`, requestOptions)
-             .then(response => response.text())
-             .then(result => workDom.remove())
+             .then(response => {
+                response.text()
+                workDom.remove()
+                document.querySelector(`[data-pictureid='${workId}']`).remove()
+             })
              .catch(error => console.log('error', error));
-
-            })
-            }) 
-})
-
+}
 // Modification si connecté
     // Banner EditorOn
         bannerTemplate = `<div id="editbanner">
@@ -37,7 +41,7 @@ getAllWorks().then(template => {
         <p>Mode edition</p>
         </div>`;
         if(localStorage.getItem("user") != null){
-            document.body.insertAdjacentHTML("beforebegin", bannerTemplate);
+            document.body.insertAdjacentHTML("afterbegin", bannerTemplate);
             }
     // Login/logout
         loginTemplate = `<li id="login"><a href="./logger.html">login</a></li>`
