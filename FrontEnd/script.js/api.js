@@ -45,9 +45,14 @@ for (let filter of filters) {
         }
     })
 }
+//Je recupere le bouton d'ajout de contenue
 const bntSubmit = document.getElementById('btnAddContent')
+//JE ecoute le click du bouton ajout de contenue
 bntSubmit.addEventListener('click', (e) => {
+    //Je previen le comportement par defaut du formulaire
     e.preventDefault()
+
+    //Je recupere tout les information du formulaire qui sont a transmettre dans le fetch
     let image = document.getElementById('pictureLoaded').files[0]
     let url = URL.createObjectURL(image)
 
@@ -57,7 +62,7 @@ bntSubmit.addEventListener('click', (e) => {
     
     let category = document.getElementById('categoryOptions').value
     
-
+    // Je recupere le token
     const user = JSON.parse(localStorage.getItem('user')) 
 
     let token = user.token

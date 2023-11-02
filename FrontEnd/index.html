@@ -55,22 +55,26 @@
 
 					<form class="formAddWorks" method="post" enctype="multipart/form-data">
 						
-						<div class="addImgLoader">
-							<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Picture_icon_BLACK.svg/1200px-Picture_icon_BLACK.svg.png" id="imageUploaded" alt="">
-							<label class="modalImgLoader" for="picture"></label>
-							<input id="pictureLoaded" type="file" accept="image/*" name="picture" onchange="previewPicture(this)" required>
+						<div class="formInformation">
+							<div class="addImgLoader">
+								<i class="fa-regular fa-image fa-2xl imgLogo"></i>
+								<img src="" id="imageUploaded" alt="">
+								<label class="modalImgLoader" for="picture"></label>
+								<input id="pictureLoaded" type="file" accept="image/*" name="picture" onchange="previewPicture(this)" required>
+								<p>jpg,png : 4mo max</p>
+							</div>
+	
+							<label for="imgTitle" >Titre</label>
+							<input id="workTitle" type="text" name="imgTitle">
+	
+							<label for="categorie" >Catégorie</label>
+							<select name="categorie" id="categoryOptions">
+								<option value="null"></option>
+								<option value="1">Objet</option>
+								<option value="2">Appartements</option>
+								<option value="3">Hôtels & Restaurants</option>
+							</select>
 						</div>
-
-						<label for="imgTitle" >Titre</label>
-						<input id="workTitle" type="text" name="imgTitle">
-
-						<label for="categorie" >Catégorie</label>
-						<select name="categorie" id="categoryOptions">
-							<option value="null"></option>
-							<option value="1">Objet</option>
-							<option value="2">Appartements</option>
-							<option value="3">Hôtels & Restaurants</option>
-						</select>
 
 						<input type="submit" class="inaccessible" id="btnAddContent" value="Valider">
 

@@ -9,11 +9,12 @@ getAllWorks().then(template => {
         trash.addEventListener('click', workDelete)
         }) 
 })
+
+// Fonction pour delete les works
 const workDelete = function(){
+    // Je recupere l'id de l'element parent qui a été clické (le bouton corbeil)
     let workDom = this.parentElement
             let workId = workDom.id
-
-            let WorkIndexDom = document.querySelectorAll('.gallery');
 
             const user = JSON.parse(localStorage.getItem('user')) 
             let token = user.token
@@ -148,6 +149,8 @@ formAdd.addEventListener('change', () => {
     //cache le bouton lorsqu'une image est selectionné.
     if( image !== undefined){
         document.getElementById('pictureLoaded').classList.add('hiddenModalPart');
+        document.querySelector('.addImgLoader i').classList.add('hiddenModalPart')
+        document.querySelector('.addImgLoader p').classList.add('hiddenModalPart')
     }
 })
 
