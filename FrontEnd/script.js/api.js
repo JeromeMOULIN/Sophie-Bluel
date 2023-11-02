@@ -110,7 +110,9 @@ bntSubmit.addEventListener('click', (e) => {
                   document.querySelector("#adminGallery").lastElementChild.lastElementChild.addEventListener('click', workDelete)
                   document.querySelector(".formAddWorks").reset()
                   document.getElementById('pictureLoaded').classList.remove('hiddenModalPart')
-                  picture.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Picture_icon_BLACK.svg/1200px-Picture_icon_BLACK.svg.png"
+                  document.querySelector('.addImgLoader i').classList.remove('hiddenModalPart')
+                  document.querySelector('.addImgLoader p').classList.remove('hiddenModalPart')
+                  picture.src = " "
                 })
               .catch(error => console.log('error', error));
     }
