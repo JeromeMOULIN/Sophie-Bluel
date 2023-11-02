@@ -505,6 +505,6 @@ footer nav ul {
 }
 
 #imageUploaded{
-	max-width: 25%;
+	max-height: 13rem;
 	object-fit: cover;
 }
