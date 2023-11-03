@@ -14,57 +14,57 @@ getAllWorks().then(template => {
 const workDelete = function(){
     // Je recupere l'id de l'element parent qui a été clické (le bouton corbeil)
     let workDom = this.parentElement
-            let workId = workDom.id
+    let workId = workDom.id
 
-            const user = JSON.parse(localStorage.getItem('user')) 
-            let token = user.token
+    const user = JSON.parse(localStorage.getItem('user')) 
+    let token = user.token
             
-            var myHeaders = new Headers();
-            myHeaders.append("Authorization", "Bearer "+token);
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", "Bearer "+token);
 
-            var requestOptions = {
-                method: 'DELETE',
-                headers: myHeaders,
-            };
+    var requestOptions = {
+        method: 'DELETE',
+        headers: myHeaders,
+    };
             
-             fetch(`http://localhost:5678/api/works/${workId}`, requestOptions)
-             .then(response => {
-                response.text()
-                workDom.remove()
-                document.querySelector(`[data-pictureid='${workId}']`).remove()
-             })
-             .catch(error => console.log('error', error));
+    fetch(`http://localhost:5678/api/works/${workId}`, requestOptions)
+    .then(response => {
+        response.text()
+        workDom.remove()
+        document.querySelector(`[data-pictureid='${workId}']`).remove()
+    })
+    .catch(error => console.log('error', error));
 }
 // Modification si connecté
-    // Banner EditorOn
-        bannerTemplate = `<div id="editbanner">
+// Banner EditorOn
+bannerTemplate = `<div id="editbanner">
+    <i class="fa-regular fa-pen-to-square fa-xs"></i>
+    <p>Mode edition</p>
+    </div>`;
+if(localStorage.getItem("user") != null){
+    document.body.insertAdjacentHTML("afterbegin", bannerTemplate);
+}
+// Login/logout
+loginTemplate = `<li id="login"><a href="./logger.html">login</a></li>`
+logoutTemplate = `<li id="logout"><a href="#">logout</a></li>`
+if(localStorage.getItem("user") != null){
+    document.getElementById("contactNav").insertAdjacentHTML("afterend", logoutTemplate);
+    document.getElementById("logout").addEventListener("click", () => {
+        localStorage.removeItem("user")
+        document.location.href="./index.html"
+    })
+}else{
+    document.getElementById("contactNav").insertAdjacentHTML("afterend", loginTemplate);
+}
+// filtres et bouton modif
+if(localStorage.getItem("user") != null){
+    document.getElementById("filters").remove();      
+    modifierButton = `<a id="modifButton" class="call-modal" href="#modal1">
         <i class="fa-regular fa-pen-to-square fa-xs"></i>
-        <p>Mode edition</p>
-        </div>`;
-        if(localStorage.getItem("user") != null){
-            document.body.insertAdjacentHTML("afterbegin", bannerTemplate);
-            }
-    // Login/logout
-        loginTemplate = `<li id="login"><a href="./logger.html">login</a></li>`
-        logoutTemplate = `<li id="logout"><a href="#">logout</a></li>`
-        if(localStorage.getItem("user") != null){
-            document.getElementById("contactNav").insertAdjacentHTML("afterend", logoutTemplate);
-            document.getElementById("logout").addEventListener("click", () => {
-                localStorage.removeItem("user")
-                document.location.href="./index.html"
-            })
-        }else{
-            document.getElementById("contactNav").insertAdjacentHTML("afterend", loginTemplate);
-        }
-    // filtres et bouton modif
-        if(localStorage.getItem("user") != null){
-            document.getElementById("filters").remove();      
-            modifierButton = `<a id="modifButton" class="call-modal" href="#modal1">
-            <i class="fa-regular fa-pen-to-square fa-xs"></i>
-            <p>Modifier</p>
-            </a>`;
-            document.getElementById("title").insertAdjacentHTML("beforeend", modifierButton)
-        }
+        <p>Modifier</p>
+        </a>`;
+    document.getElementById("title").insertAdjacentHTML("beforeend", modifierButton)
+}
 
 // MODALS pour identifier la modal en cour
 let modal = null
