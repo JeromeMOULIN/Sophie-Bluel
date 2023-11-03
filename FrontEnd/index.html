@@ -38,7 +38,7 @@
 		<div id="title">
 			<h2>Mes Projets</h2>
 		</div>
-		<aside id="modal1" class="modal" aria-hidden="true" role="dialog" aria-modal="false" aria-label="modalTitle" style="visibility: hidden;">
+		<aside id="modal1" class="modal" style="visibility: hidden;">
 			<div  class="modal-wrapper modal-stop ">
 				<button class="modal-cross"><i class="fa-solid fa-xmark fa-xl"></i></button>
 				<div id="modal1Part1" class="modalPart">
@@ -58,7 +58,7 @@
 						<div class="formInformation">
 							<div class="addImgLoader">
 								<i class="fa-regular fa-image fa-2xl imgLogo"></i>
-								<img src="" id="imageUploaded" alt="">
+								<img src="#" id="imageUploaded" alt="">
 								<label class="modalImgLoader" for="pictureLoaded"></label>
 								<input id="pictureLoaded" type="file" accept="image/*" name="picture" onchange="previewPicture(this)" required>
 								<p>jpg,png : 4mo max</p>
@@ -69,14 +69,14 @@
 	
 							<label for="categoryOptions">Catégorie</label>
 							<select name="categorie" id="categoryOptions">
-								<option value="null"></option>
+								<option value="null" disabled selected>&nbsp;</option>
 								<option value="1">Objet</option>
 								<option value="2">Appartements</option>
 								<option value="3">Hôtels & Restaurants</option>
 							</select>
 						</div>
 
-						<input type="submit" class="inaccessible" id="btnAddContent" value="Valider">
+						<input type="submit" class="inaccessible" id="btnAddContent" value="Valider" disabled>
 
 					</form>
 				</div>

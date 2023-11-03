@@ -143,8 +143,10 @@ formAdd.addEventListener('change', () => {
     let btnformAdd = document.querySelector('#btnAddContent')
     if (image === undefined || title === '' || category === 'null') {
         btnformAdd.classList.replace('accessible','inaccessible')
+        document.querySelector('#btnAddContent').setAttribute('disabled', true)
     } else {
         btnformAdd.classList.replace('inaccessible','accessible')
+        document.querySelector('#btnAddContent').removeAttribute('disabled')
     }
     //cache le bouton lorsqu'une image est selectionné.
     if( image !== undefined){

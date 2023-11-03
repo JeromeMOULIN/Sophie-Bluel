@@ -112,7 +112,9 @@ bntSubmit.addEventListener('click', (e) => {
                 document.getElementById('pictureLoaded').classList.remove('hiddenModalPart')
                 document.querySelector('.addImgLoader i').classList.remove('hiddenModalPart')
                 document.querySelector('.addImgLoader p').classList.remove('hiddenModalPart')
-                picture.src = " "
+                document.getElementById('btnAddContent').classList.replace('accessible','inaccessible')
+                document.getElementById('btnAddContent').setAttribute('disabled', true);
+                picture.src = "#"
                 })
             .catch(error => console.log('error', error));
     }
