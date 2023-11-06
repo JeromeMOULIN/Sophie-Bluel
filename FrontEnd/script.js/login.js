@@ -2,7 +2,7 @@
 document.querySelector("#subForm").addEventListener("submit", (e) =>{
     // previent le comportement par defaut du formulaire
     e.preventDefault();
-
+    let invalidInput = 'Mot de pass ou email invalid'
     let error;
     let inputsErr = document.getElementsByTagName("input");
     //Check si le nombre de champ rempli est egal au nombre de champ disponible
@@ -56,9 +56,14 @@ document.querySelector("#subForm").addEventListener("submit", (e) =>{
                     localStorage.setItem('user', JSON.stringify(user))
                      // On redirige l'utilisateur vers la page principal
                     document.location.href="./index.html"
+                }else{
+                    // On informe lutilisateur que lemail ou le mot de pass renseigné n'est pas bon.
+                    document.querySelector("#error").innerHTML = invalidInput;
                 }
             })
-            .catch(error => console.log('error', error));
+            .catch(err => {
+                console.log(err)
+            });
 
     } 
 })
