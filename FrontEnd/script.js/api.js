@@ -73,8 +73,6 @@ bntSubmit.addEventListener('click', (e) => {
             // Traitement de la reponse
             .then(data => {
                 //reset du formulaire
-                 console.log(data)
-                 console.log(data.id)
                 let templateAddModal = `<figure id="${data.id}"  class="adminWorks">
                     <img src="${url}" alt="${title}">
                     <button class="trash"><i class="fa-solid fa-trash-can"></i></button>

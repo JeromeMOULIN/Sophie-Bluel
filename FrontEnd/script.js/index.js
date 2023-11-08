@@ -1,13 +1,20 @@
-
 getCategory().then(categorys => {
-    let category = categorys.categorys
-    let categoTemplate = `<button id="all" class="all filterSelected">Tous</button>`;
-    for (const categorie of category){
-        categoTemplate = categoTemplate + `<button id="${categorie.id}" class="all filterUnselected">${categorie.name}</button>`;
-    }
-    document.querySelector('#filters').insertAdjacentHTML('beforeend', categoTemplate)
-
     //recupération des filtres
+    let category = categorys.categorys
+    let categoTemplateDOM = `<button id="all" class="all filterSelected">Tous</button>`;
+    let categoInputModal = ``
+    for (const categorie of category){
+        categoTemplateDOM = categoTemplateDOM + `<button id="${categorie.id}" class="all filterUnselected">${categorie.name}</button>`;
+        categoInputModal =  categoInputModal + `<option value="${categorie.id}">${categorie.name}</option>`
+    }
+
+    // injection des filtres dans le DOM
+    if(localStorage.getItem("user") != null){
+        document.querySelector('#categoryOptions').insertAdjacentHTML('beforeend', categoInputModal)
+    }else{
+        document.querySelector('#filters').insertAdjacentHTML('beforeend', categoTemplateDOM)
+    }
+
     let filters = document.querySelectorAll("#filters button");
     //pour chaque filtre de mes filtres j'écoute le click
 
@@ -31,6 +38,7 @@ getCategory().then(categorys => {
     })
 }
 })
+
 getAllWorks().then(template => {  
     //injection du template dans mes projets 
     document.querySelector('.gallery').insertAdjacentHTML("beforeend", template.templateProject);
@@ -88,9 +96,8 @@ if(localStorage.getItem("user") != null){
 }else{
     document.getElementById("contactNav").insertAdjacentHTML("afterend", loginTemplate);
 }
-// filtres et bouton modif
+// bouton modif
 if(localStorage.getItem("user") != null){
-    document.getElementById("filters").remove();      
     modifierButton = `<a id="modifButton" class="call-modal" href="#modal1">
         <i class="fa-regular fa-pen-to-square fa-xs"></i>
         <p>Modifier</p>
@@ -152,6 +159,7 @@ document.getElementById('modalArrow').addEventListener('click', () => {
     document.getElementById('modal1Part1').classList.remove('hiddenModalPart')
     document.getElementById('modal1Part2').classList.add('hiddenModalPart')
 })
+
 
 //preview image
 let image = document.getElementById("imageUploaded")
