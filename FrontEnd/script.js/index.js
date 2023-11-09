@@ -31,7 +31,7 @@ getCategory().then(categorys => {
             // je cache tout les cartes
             card.classList.replace("show", "hide")
             if (card.id === filter.id || filter.id === "all") {
-                //j'affiche toute les cartes dont l'id catégorie est egale a l'id du filtre
+                //j'affiche toutes les cartes dont l'id catégorie est egale a l'id du filtre
                 card.classList.replace("hide", "show")
             }
         }
@@ -39,10 +39,25 @@ getCategory().then(categorys => {
 }
 })
 
-getAllWorks().then(template => {  
+getAllWorks().then(worksResponse => { 
+    //création du template pour mes projet
+    let works = worksResponse.worksResponse
+    console.log(works)
+    let templateProject = '';
+    let templateModal = '';
+    for (const work of works) {
+        templateProject = templateProject + `<figure id="${work.categoryId}" data-pictureId="${work.id}" class="show">
+                                            <img src="${work.imageUrl}" alt="${work.title}">
+                                            <figcaption>${work.title}</figcaption>
+                                            </figure>`;
+        templateModal = templateModal + `<figure id="${work.id}" class="adminWorks">
+                                        <img src="${work.imageUrl}" alt="${work.title}">
+                                        <button class="trash"><i class="fa-solid fa-trash-can"></i></button>
+                                        </figure>`;
+    }
     //injection du template dans mes projets 
-    document.querySelector('.gallery').insertAdjacentHTML("beforeend", template.templateProject);
-    document.querySelector('.contentAdminGallery').insertAdjacentHTML("beforeend", template.templateModal)
+    document.querySelector('.gallery').insertAdjacentHTML("beforeend", templateProject);
+    document.querySelector('.contentAdminGallery').insertAdjacentHTML("beforeend", templateModal)
     // Ajout du system de suppression
     let delBtn = document.querySelectorAll('.trash')
     delBtn.forEach(trash => {

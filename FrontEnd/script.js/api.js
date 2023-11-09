@@ -2,28 +2,15 @@
 const getCategory = async () => {
     const response = await fetch('http://localhost:5678/api/categories')
     const categorys = await response.json();
+
     return {categorys}
 }
-
 //recuperer de l'api
 const getAllWorks =  async () => {
     const response = await fetch('http://localhost:5678/api/works')
-    const works = await response.json();
+    const worksResponse = await response.json();
     
-    //création du template pour mes projet
-    let templateProject = '';
-    let templateModal = '';
-    for (const work of works) {
-        templateProject = templateProject + `<figure id="${work.categoryId}" data-pictureId="${work.id}" class="show">
-                                            <img src="${work.imageUrl}" alt="${work.title}">
-                                            <figcaption>${work.title}</figcaption>
-                                            </figure>`;
-        templateModal = templateModal + `<figure id="${work.id}" class="adminWorks">
-                                        <img src="${work.imageUrl}" alt="${work.title}">
-                                        <button class="trash"><i class="fa-solid fa-trash-can"></i></button>
-                                        </figure>`;
-    }
-    return {templateProject, templateModal}
+    return {worksResponse}
 }
 //Je recupere le bouton d'ajout de contenue
 const bntSubmit = document.getElementById('btnAddContent')
@@ -65,7 +52,6 @@ bntSubmit.addEventListener('click', (e) => {
             headers: myHeaders,
             body: formData,
         }
-        
         
         fetch("http://localhost:5678/api/works", requestOptions)
             // Convertie la reponse en JSON
